@@ -1,0 +1,17 @@
+First of all, I am sorry that I cannot use Docker as my machine is old and motherboard does not support WSL2 to install Docker Desktop :( .
+ 
+I assumed the app should be a CRUD. Therefore I started with Resource Route
+But did not spend the time to complete CRUD as it is not the main task
+
+Really wanted to try some Tailwind CSS. Unfortunately that is also not working.
+I wanted to create a grid and put the Turbines into cells.
+I have used Bootstrap 5 to create the GUI. I am not a brilliant front end designer. I did my best.
+
+Lastly spent a lot of time trying to fix the machine, but I can't touch the motherboard settings.
+SO if I have more time I would like to do some Automate testing. Let me know.
+
+Hope I did not waste your time creating some crap. If so I am really sorry. Will try next time one day !!
+
+Thank you for giving me the opportunity to take the technical test.
+Have a great day
+Charika
