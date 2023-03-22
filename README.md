@@ -94,4 +94,3 @@ Clicking on each turbin image will lead to
 Component ids
 ![image](https://user-images.githubusercontent.com/102517157/226898288-ec12bb40-8d07-4846-80a3-bfa36799f41d.png)
 
-
