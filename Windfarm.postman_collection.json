@@ -1,0 +1,529 @@
+{
+	"info": {
+		"_postman_id": "372edde7-6cc0-467c-b896-244a4634ef70",
+		"name": "Windfarm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20582298"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "mariya",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "sanmariyas@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Mariya@123",
+							"type": "text"
+						},
+						{
+							"key": "confirm_password",
+							"value": "Mariya@123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/api/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "renner.eddie@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Turbines",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "4|JelXr5iKmYWuy4FAYCelyG7LekA7XqZVHb8Bm66g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/api/turbines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"turbines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TurbineComponents By Turbine",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|qANkHjMYGp5HaYamsNd5jgdt43qoB8LoGN2Nb6QS",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost/api/turbine_components?turbine_id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"turbine_components"
+					],
+					"query": [
+						{
+							"key": "turbine_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Turbine",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "4|JelXr5iKmYWuy4FAYCelyG7LekA7XqZVHb8Bm66g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/turbines/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"turbines",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TurbineComponents",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|qANkHjMYGp5HaYamsNd5jgdt43qoB8LoGN2Nb6QS",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/turbine_components/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"turbine_components",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Turbine",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "4|JelXr5iKmYWuy4FAYCelyG7LekA7XqZVHb8Bm66g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/turbines/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"turbines",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TurbineComponents",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|qANkHjMYGp5HaYamsNd5jgdt43qoB8LoGN2Nb6QS",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/api/turbine_components/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"turbine_components",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Turbine",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "4|JelXr5iKmYWuy4FAYCelyG7LekA7XqZVHb8Bm66g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "test turbine 2",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "vertical",
+							"type": "text"
+						},
+						{
+							"key": "specification",
+							"value": "test data",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/api/turbines/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"turbines",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TurbineComponents",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|qANkHjMYGp5HaYamsNd5jgdt43qoB8LoGN2Nb6QS",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "turbine_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "component_id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "grade",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "specification",
+							"value": "repaired",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/api/turbine_components/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"turbine_components",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Turbines",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|qANkHjMYGp5HaYamsNd5jgdt43qoB8LoGN2Nb6QS",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Turbine 1",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "vertical",
+							"type": "text"
+						},
+						{
+							"key": "specification",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/api/turbines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"turbines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TurbineComponents",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|qANkHjMYGp5HaYamsNd5jgdt43qoB8LoGN2Nb6QS",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "turbine_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "component_id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "grade",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "specification",
+							"value": "damaged",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/api/turbine_components",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"turbine_components"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
