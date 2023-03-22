@@ -75,7 +75,7 @@ I am not much famliar about front end frameworks, so I tried to used the tailwin
 
 Steps to run the application
 
-1. run php artisan migrate:refresh --seed
+1. run `php artisan migrate:refresh --seed`
 2. Then you will get in your http://localhost/
 ![image](https://user-images.githubusercontent.com/59043868/226894167-77f2c3a4-333e-48de-b0fe-c607091e6541.png)
 3. Import Postman API collection from Windfarm.postman_collection.json from the root folder
