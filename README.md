@@ -67,4 +67,29 @@ composer install --ignore-platform-reqs
 ```
 
 ## Your Notes
-This is a place for you to add your notes, plans, thinking and any feedback you have for us of the task, please feel free to include whatever you like here, we'll make sure to read it. 
+As per the instructions in the tech-test. I have implemented two parts for this wind farm app. 
+1. Web interface to see the installed Turbines and its details.
+2. APIs for adding new turbins and its compoents(also with basic CRUD operations)
+
+I am not much famliar about front end frameworks, so I tried to used the tailwind css for pages. But it may feel very poor front end designs.
+
+Steps to run the application
+
+1. run `php artisan migrate:refresh --seed`
+2. Then you will get in your http://localhost/
+![image](https://user-images.githubusercontent.com/59043868/226894167-77f2c3a4-333e-48de-b0fe-c607091e6541.png)
+3. Import Postman API collection from Windfarm.postman_collection.json from the root folder
+4. Call register or login API to get the token
+5. Set the new token in all API authorization header
+6. Call ![image](https://user-images.githubusercontent.com/59043868/226895047-0370a909-5172-417b-8282-805cc8e4110d.png)
+7. Add components using ![image](https://user-images.githubusercontent.com/59043868/226895300-0264d3f1-691f-464c-ba5e-11c8465d31c3.png)
+
+Once you have added all turbines and its components, you can see the 
+![image](https://user-images.githubusercontent.com/59043868/226895948-0a60644e-b7e0-4486-9a30-109147ea2057.png)
+
+Clicking on each turbin image will lead to
+![image](https://user-images.githubusercontent.com/59043868/226896184-f0bd555d-dbbd-4198-8f1a-78dcd1a86db6.png)
+
+
+
+
