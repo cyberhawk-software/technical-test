@@ -91,5 +91,7 @@ Clicking on each turbin image will lead to
 ![image](https://user-images.githubusercontent.com/59043868/226896184-f0bd555d-dbbd-4198-8f1a-78dcd1a86db6.png)
 
 
+Component ids
+![image](https://user-images.githubusercontent.com/102517157/226898288-ec12bb40-8d07-4846-80a3-bfa36799f41d.png)
 
 
