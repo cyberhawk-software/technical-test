@@ -82,6 +82,8 @@ Hello Cyberhawk team.
 
 I have finished my task and wanted to leave some notes about this task.
 
+You should be able to run this application without any problems. just run php artisan migrate and that should be it.
+
 1.Location
 To start reviewing this task just follow to /dashboard and start from there.
 In the dashboard you will be able to add location. Name of the location and its postcode.
