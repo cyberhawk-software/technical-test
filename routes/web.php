@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ComponentInspectionController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\LocationObjectController;
+use App\Http\Controllers\ObjectComponentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', [LocationController::class, 'index']);
+Route::get('/component/{id}', [LocationObjectController::class, 'index']);
+Route::get('/object/{id}', [ObjectComponentController::class, 'index']);
+Route::get('/inspection/{id}', [ComponentInspectionController::class, 'index']);
