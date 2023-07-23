@@ -2164,9 +2164,25 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/table */ "./resources/js/components/table.jsx");
-/* harmony import */ var _components_table__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_table__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/modal */ "./resources/js/components/modal.js");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_modal__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/map */ "./resources/js/components/map.js");
+/* harmony import */ var _components_map__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_map__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _xhr_addLocation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./xhr/addLocation */ "./resources/js/xhr/addLocation.js");
+/* harmony import */ var _xhr_addObject__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./xhr/addObject */ "./resources/js/xhr/addObject.js");
+/* harmony import */ var _xhr_addComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./xhr/addComponent */ "./resources/js/xhr/addComponent.js");
+/* harmony import */ var _xhr_addInspection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./xhr/addInspection */ "./resources/js/xhr/addInspection.js");
+/* harmony import */ var _xhr_delete__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./xhr/delete */ "./resources/js/xhr/delete.js");
+/* harmony import */ var _xhr_delete__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_xhr_delete__WEBPACK_IMPORTED_MODULE_6__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+// import "./components/table";
+
+
+
+
+
+
 
 
 /***/ }),
@@ -2207,22 +2223,328 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/table.jsx":
-/*!*******************************************!*\
-  !*** ./resources/js/components/table.jsx ***!
-  \*******************************************/
+/***/ "./resources/js/components/map.js":
+/*!****************************************!*\
+  !*** ./resources/js/components/map.js ***!
+  \****************************************/
 /***/ (() => {
 
-// import React from "react";
-// import ReactDOM from "react-dom";
+var mapWrapper = document.querySelector("#map");
+if (mapWrapper) {
+  var _long = mapWrapper.dataset["long"];
+  var lat = mapWrapper.dataset.lat;
+  mapboxgl.accessToken = "pk.eyJ1IjoiYXNlcmxpeCIsImEiOiJjazd2dXM4N3UxY2tyM29tcmduZDY1anppIn0.rtIl55V5CC6sPEY0EvAxjA";
+  var map = new mapboxgl.Map({
+    container: "map",
+    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+    style: "mapbox://styles/mapbox/streets-v12",
+    center: [_long, lat],
+    zoom: 12
+  });
 
-// export default HelloReact = () => (
-//   <h1>Help me</h1>
-// )
+  // Create a default Marker and add it to the map.
+  var marker1 = new mapboxgl.Marker().setLngLat([_long, lat]).addTo(map);
 
-// if (document.querySelector("#hello-react")) {
-//     ReactDOM.render(<HelloReact />, document.getElementById("hello-react"));
-// }
+  // Create a default Marker, colored black, rotated 45 degrees.
+  // const marker2 = new mapboxgl.Marker({ color: "black", rotation: 45 })
+  //     .setLngLat([12.65147, 55.608166])
+  //     .addTo(map);
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/modal.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/modal.js ***!
+  \******************************************/
+/***/ (() => {
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var Modal = /*#__PURE__*/_createClass(function Modal(array) {
+  var _this = this;
+  _classCallCheck(this, Modal);
+  _defineProperty(this, "initModal", function (modal) {
+    var openButtons = document.querySelectorAll("[data-action=\"open\"][data-modal=\"".concat(modal.id, "\"]"));
+    var closeButtons = document.querySelectorAll("[data-action=\"close\"][data-modal=\"".concat(modal.id, "\"]"));
+    openButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        modal.classList.add("is-open");
+      });
+    });
+    closeButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        modal.classList.remove("is-open");
+      });
+    });
+  });
+  array.forEach(function (modal) {
+    _this.initModal(modal);
+  });
+});
+var modalArray = document.querySelectorAll(".modal");
+if (modalArray.length > 0) {
+  new Modal(modalArray);
+}
+
+/***/ }),
+
+/***/ "./resources/js/xhr/addComponent.js":
+/*!******************************************!*\
+  !*** ./resources/js/xhr/addComponent.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var addComponentWrapper = document.querySelector(".add-component");
+if (addComponentWrapper) {
+  var inputs = addComponentWrapper.querySelectorAll("input");
+  var submit = addComponentWrapper.querySelector(".submit");
+  submit.addEventListener("click", function () {
+    var error = 0;
+    var data = {};
+    inputs.forEach(function (input) {
+      if (input.value == "") {
+        error += 1;
+      } else {
+        data[input.name] = input.value;
+      }
+    });
+    if (error == 0) {
+      xhr(data);
+    }
+  });
+}
+var xhr = function xhr(data) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/xhr/add-component", data).then(function (_ref) {
+    var data = _ref.data;
+    // console.log(data);
+    if (data.response == 200) {
+      location.reload();
+    } else {
+      console.log("error");
+    }
+  })["catch"](function (error) {
+    // handle error
+    console.log(error);
+  })["finally"](function () {
+    // console.log("finally");
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/xhr/addInspection.js":
+/*!*******************************************!*\
+  !*** ./resources/js/xhr/addInspection.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var addComponentWrapper = document.querySelector(".add-inspection");
+if (addComponentWrapper) {
+  var inputs = addComponentWrapper.querySelectorAll("input");
+  var submit = addComponentWrapper.querySelector(".submit");
+  submit.addEventListener("click", function () {
+    var error = 0;
+    var data = {};
+    inputs.forEach(function (input) {
+      if (input.value == "") {
+        error += 1;
+      } else {
+        data[input.name] = input.value;
+      }
+    });
+    if (error == 0) {
+      xhr(data);
+    }
+  });
+}
+var xhr = function xhr(data) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/xhr/add-inspection", data).then(function (_ref) {
+    var data = _ref.data;
+    // console.log(data);
+    if (data.response == 200) {
+      location.reload();
+    } else {
+      console.log("error");
+    }
+  })["catch"](function (error) {
+    // handle error
+    console.log(error);
+  })["finally"](function () {
+    // console.log("finally");
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/xhr/addLocation.js":
+/*!*****************************************!*\
+  !*** ./resources/js/xhr/addLocation.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var addLocationWrapper = document.querySelector(".add-location");
+if (addLocationWrapper) {
+  var inputs = addLocationWrapper.querySelectorAll("input");
+  var submit = addLocationWrapper.querySelector(".submit");
+  submit.addEventListener("click", function () {
+    var error = 0;
+    var data = {};
+    inputs.forEach(function (input) {
+      if (input.value == "") {
+        error += 1;
+      } else {
+        data[input.name] = input.value;
+      }
+    });
+    if (error == 0) {
+      xhr(data);
+    }
+  });
+}
+var xhr = function xhr(data) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/xhr/add-location", data).then(function (_ref) {
+    var data = _ref.data;
+    // console.log(data);
+    if (data.response == 200) {
+      location.reload();
+    } else {
+      console.log("error");
+    }
+  })["catch"](function (error) {
+    // handle error
+    console.log(error);
+  })["finally"](function () {
+    // console.log("finally");
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/xhr/addObject.js":
+/*!***************************************!*\
+  !*** ./resources/js/xhr/addObject.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var addObjectWrapper = document.querySelector(".add-object");
+if (addObjectWrapper) {
+  var inputs = addObjectWrapper.querySelectorAll("input");
+  var submit = addObjectWrapper.querySelector(".submit");
+  submit.addEventListener("click", function () {
+    var error = 0;
+    var data = {};
+    inputs.forEach(function (input) {
+      if (input.value == "") {
+        error += 1;
+      } else {
+        data[input.name] = input.value;
+      }
+    });
+    if (error == 0) {
+      xhr(data);
+    }
+  });
+}
+var xhr = function xhr(data) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/xhr/add-object", data).then(function (_ref) {
+    var data = _ref.data;
+    // console.log(data);
+    if (data.response == 200) {
+      location.reload();
+    } else {
+      console.log("error");
+    }
+  })["catch"](function (error) {
+    // handle error
+    console.log(error);
+  })["finally"](function () {
+    // console.log("finally");
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/xhr/delete.js":
+/*!************************************!*\
+  !*** ./resources/js/xhr/delete.js ***!
+  \************************************/
+/***/ (() => {
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var Delete = /*#__PURE__*/_createClass(function Delete(button) {
+  var _this = this;
+  _classCallCheck(this, Delete);
+  _defineProperty(this, "init", function () {
+    _this.button.addEventListener("click", function () {
+      var result = confirm("Are you sure you want to delete this ".concat(_this.object, "?"));
+      if (result) {
+        _this["delete"]();
+      }
+    });
+  });
+  _defineProperty(this, "delete", function () {
+    data = {
+      object: _this.object,
+      id: _this.id
+    };
+    axios.post("/api/xhr/delete", data).then(function (_ref) {
+      var data = _ref.data;
+      // console.log(data);
+      if (data.response == 200) {
+        location.reload();
+      } else {
+        console.log("error");
+      }
+    })["catch"](function (error) {
+      // handle error
+      console.log(error);
+    })["finally"](function () {
+      // console.log("finally");
+    });
+  });
+  this.button = button;
+  this.id = button.dataset.id;
+  this.object = button.dataset.object;
+  if (this.button && this.id && this.object) {
+    this.init();
+  }
+});
+var deleteButtons = document.querySelectorAll(".delete");
+deleteButtons.forEach(function (button) {
+  new Delete(button);
+});
 
 /***/ }),
 

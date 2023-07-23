@@ -1,12 +1,63 @@
-.table{
+.header {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    
-    &-item{
+    h1 {
         width: 100%;
-        display: grid;
-        place-items: center;
-        font-size: 20px;
+        text-align: center;
+    }
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 50px;
+
+    #map,
+    img {
+        width: 100%;
+        height: 500px;
+        box-shadow: 5px 5px 5px rgb(217, 217, 217);
+    }
+    img {
+        object-fit: cover;
+    }
+}
+
+.button-div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 30px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    box-shadow: 5px 5px 5px rgb(217, 217, 217);
+
+    tr {
+        border-radius: 30px;
+        transition: 0.4s ease;
+        background-color: white;
+        color: black;
+    }
+
+    td,
+    th {
+        text-align: center;
+    }
+    th {
+        background: #ffd12d;
+        color: black;
+        padding: 10px 0;
+    }
+    td {
+        button,
+        a {
+            background-color: transparent;
+            padding: 5px;
+            border: 0;
+            cursor: pointer;
+            img {
+                width: 20px;
+            }
+        }
     }
 }
