@@ -80,7 +80,11 @@
             flex-direction: column;
             gap: 20px;
             align-items: center;
-            input {
+            label {
+                width: 100%;
+            }
+            input,
+            select {
                 width: 100%;
                 border-radius: 30px;
                 padding: 10px 25px;

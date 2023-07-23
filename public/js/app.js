@@ -2354,20 +2354,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
-var addComponentWrapper = document.querySelector(".add-inspection");
-if (addComponentWrapper) {
-  var inputs = addComponentWrapper.querySelectorAll("input");
-  var submit = addComponentWrapper.querySelector(".submit");
+var addInspectionWrapper = document.querySelector(".add-inspection");
+if (addInspectionWrapper) {
+  var parent = addInspectionWrapper.querySelector("input");
+  var input = addInspectionWrapper.querySelector("select");
+  var submit = addInspectionWrapper.querySelector(".submit");
   submit.addEventListener("click", function () {
     var error = 0;
     var data = {};
-    inputs.forEach(function (input) {
-      if (input.value == "") {
-        error += 1;
-      } else {
-        data[input.name] = input.value;
-      }
-    });
+    if (input.value == "") {
+      error += 1;
+    } else {
+      data[parent.name] = parent.value;
+      data[input.name] = input.value;
+    }
     if (error == 0) {
       xhr(data);
     }

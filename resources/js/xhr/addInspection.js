@@ -1,20 +1,20 @@
 import axios from "axios";
 
-const addComponentWrapper = document.querySelector(".add-inspection");
-if (addComponentWrapper) {
-    const inputs = addComponentWrapper.querySelectorAll("input");
-    const submit = addComponentWrapper.querySelector(".submit");
+const addInspectionWrapper = document.querySelector(".add-inspection");
+if (addInspectionWrapper) {
+    const parent = addInspectionWrapper.querySelector("input");
+    const input = addInspectionWrapper.querySelector("select");
+    const submit = addInspectionWrapper.querySelector(".submit");
 
     submit.addEventListener("click", () => {
         let error = 0;
         let data = {};
-        inputs.forEach((input) => {
-            if (input.value == "") {
-                error += 1;
-            } else {
-                data[input.name] = input.value;
-            }
-        });
+        if (input.value == "") {
+            error += 1;
+        } else {
+            data[parent.name] = parent.value;
+            data[input.name] = input.value;
+        }
         if (error == 0) {
             xhr(data);
         }

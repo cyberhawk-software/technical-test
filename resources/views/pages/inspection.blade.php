@@ -35,7 +35,13 @@
         </div>
         <div class="modal__inner-input">
             <input hidden type="text" name="component" value="{{ $component['id'] }}">
-            <input type="text" name="grade" placeholder="Grade">
+            <select name="grade">
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+            </select>
         </div>
         <div class="modal__inner-footer">
             <div class="button green submit">Add</div>
