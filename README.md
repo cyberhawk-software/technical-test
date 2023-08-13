@@ -66,5 +66,55 @@ laravelsail/php81-composer:latest \
 composer install --ignore-platform-reqs
 ```
 
-## Your Notes
-This is a place for you to add your notes, plans, thinking and any feedback you have for us of the task, please feel free to include whatever you like here, we'll make sure to read it. 
+## How to set up and test
+
+First you need to run the command to raise the docker via Sail.
+
+```shell
+./vendor/bin/sail up -d
+```
+
+Then you will need to copy the `.env.example` to use the application.
+
+```shell
+./vendor/bin/sail cp .env.example .env
+```
+
+Then it will be necessary to run installation of composer packages, npm and run the data migration and generation for the database.
+
+```shell
+./vendor/bin/sail composer install
+
+./vendor/bin/sail php artisan key:generate
+
+./vendor/bin/sail php artisan migration
+
+./vendor/bin/sail php artisan db:seed
+
+./vendor/bin/sail cd resources/next && npm install
+```
+
+With that, the setup will be complete to run, but to access the frontend unfortunately you will have to access laravel resources, as it is integrated
+so that it is encompassed in a unique way.
+
+```shell
+cd resources/next && npm run dev
+```
+
+Now just access `http://localhost:3000` and browse.
+
+### Unit and Feature tests
+
+This project has unit and feature tests for the backend. To run just use the command below:
+
+```shell
+./vendor/bin/sail php artisan test
+```
+
+It also has tests implemented for the frontend, in this case to run you need to access the resources and run the following command:
+
+```shell
+./vendor/bin/sail cd resources/next && npm run test
+```
+
+Obs: Some implementations were not executed due to lack of time, but the idea was to allow each iteration with the component rate, a real-time update of the turbine.
