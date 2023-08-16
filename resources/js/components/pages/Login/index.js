@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { createRoot } from "react-dom/client";
 
 async function loginUser(credentials) {
-    return fetch("http://localhost:8080/login", {
+    return fetch("http://localhost/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -19,7 +20,7 @@ export default function Login({ setToken }) {
         e.preventDefault();
 
         const token = await loginUser({
-            username,
+            email,
             password,
         });
         setToken(token);
@@ -60,7 +61,7 @@ export default function Login({ setToken }) {
                                 onChange={({ target }) =>
                                     setEmail(target.value)
                                 }
-                                type="text"
+                                type="email"
                                 value={email}
                             />
                         </div>
@@ -122,11 +123,6 @@ export default function Login({ setToken }) {
             </footer>
         </>
     );
-}
-
-if (document.getElementById("root")) {
-    const root = createRoot(document.getElementById("root"));
-    root.render(<Login />);
 }
 
 Login.propTypes = {

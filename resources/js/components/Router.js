@@ -1,9 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./pages/Login";
 import useToken from "./App/Hooks/useToken";
+import { createRoot } from "react-dom/client";
 
 function Router() {
     const { token, setToken } = useToken();
@@ -22,10 +22,10 @@ function Router() {
 export default Router;
 
 if (document.getElementById("root")) {
-    ReactDOM.render(
+    const root = createRoot(document.getElementById("root"));
+    root.render(
         <BrowserRouter>
             <Router />
-        </BrowserRouter>,
-        document.getElementById("root")
+        </BrowserRouter>
     );
 }
