@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<html class="h-full bg-gray-800" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +14,7 @@
         {{-- Add Styles --}}
         <link  href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-    <body class="body-bg min-h-screen pb-6 px-2 md:px-0">
+    <body class="h-full">
         <div id="root">
             @guest
             @else
