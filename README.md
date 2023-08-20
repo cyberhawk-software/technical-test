@@ -77,3 +77,18 @@ composer install --ignore-platform-reqs
 ```
 
 ## Your Notes
+
+-   Todos
+
+    -   Login Form
+    -   Register User Form
+    -   Forgot Password Form
+    -   Dashboard Layout
+
+    API:
+
+    -   Login (POST)
+    -   Register User (POST)
+    -   Turbines (GET)
+    -   Filter routes (GET)
+    -   Inspections: Create, Update, Delete (POST)
