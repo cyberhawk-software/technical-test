@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',['App\Http\Controllers\TurbineController','index']);
+Route::get('/turbines/{id}',['App\Http\Controllers\TurbineController','getTurbine']);
