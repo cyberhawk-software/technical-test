@@ -9,13 +9,28 @@ To make things as simple as we could, we've opted to use [Laravel Sail](https://
 We'd like you to build an application that will display an example wind farm, its turbines and their components.
 We'd like to be able to see components and their grades (measurement of damage/wear) ranging between 1 - 5.
 
-For example, a turbine could contain the following components:
-- Blade
-- Rotor
-- Hub
-- Generator
+A typical wind farm, in terms of data, looks something like this:
+- Wind Farm
+    - Turbine 1
+        - Blade
+        - Rotor
+        - Hub
+        - Generator
+        - etc
+    - Turbine 2
+        - Blade
+        - Rotor
+        - Hub
+        - Generator
+        - etc
+    - Turbine 3
+        - Blade
+        - Rotor
+        - Hub
+        - Generator
+        - etc
 
-Don't worry about using real names for components or accurate looking data, we're more interested in how you structure the application and how you present the data.
+Don't worry about using real names for components or accurate looking grades, we're more interested in how you structure the application and how you present the data.
 
 Don't be afraid of submitting incomplete code or code that isn't quite doing what you would like, just like your maths teacher, we like to see your working.
 Just Document what you had hoped to achieve and your thoughts behind any unfinished code, so that we know what your plan was.
